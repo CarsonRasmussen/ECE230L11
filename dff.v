@@ -1,6 +1,7 @@
 module dff(
     input D,
     input Clock,
+    input Reset,
     output reg Q,
     output NotQ
 );
@@ -10,7 +11,10 @@ module dff(
     end
     
     always @(posedge Clock)
-        Q <= D;
+        if (Reset)
+            Q <= 1'b0;
+        else
+            Q <= D;
 
     assign NotQ = ~Q;
     

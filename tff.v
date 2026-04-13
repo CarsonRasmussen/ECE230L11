@@ -1,16 +1,21 @@
 module tff(
     input T,
     input Clock,
-    output Q, 
+    input Reset,
+    output reg Q, 
     output NotQ
 );
 
-    jkff inst2(
-        .J(T),
-        .K(T),
-        .Clock(Clock),
-        .Q(Q),
-        .NotQ(NotQ)
-    );
+    initial begin
+        Q <= 0;
+    end
+    
+    always @(posedge Clock)
+        if (Reset)
+            Q <= 1'b0;
+        else if (T)
+            Q <= ~Q;
+
+    assign NotQ = ~Q;
     
 endmodule
