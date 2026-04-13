@@ -19,7 +19,15 @@ In this lab, we learned how to make clock dividers from two types of counters.
 
 ### 1 - Why does the Modulo Counter actually divide clocks by 2 * Count?
 
+The output is toggled every time it reaches the value of count. It has 
+to do this twice within a cycle.
+
 ### 2 - Why does the ring counter's output go to all 1s on the first clock cycle?
+
+The flip flops initially start at 0, when the first clock pulse happens
+the outputs go from 0 to 1 as it moves through the counter.
 
 ### 3 - What width of ring counter would you use to get to an output of ~1KHz?
 
+I would use a width of 17 bits. If you take a clock with a 100 MHz and divide it
+by 2^17 you roughly get 763 Hz which is the closest approximation to 1KHz.
